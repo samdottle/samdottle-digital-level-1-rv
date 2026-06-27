@@ -37,7 +37,7 @@ const h=React.createElement;
 const SERVICE_UUID='6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 const TX_UUID     ='6e400002-b5a3-f393-e0a9-e50e24dcca9e';
 const RX_UUID     ='6e400003-b5a3-f393-e0a9-e50e24dcca9e';
-const EMA_ALPHA   = 0.05;
+const EMA_ALPHA   = 0.15; // RV leveling: faster response, precision not required
 const THRESHOLD   = 0.5;
 const MAX_DEG     = 3;
 const WHEELBASE   = 120;
@@ -214,7 +214,7 @@ function BullsEye({pitch,roll,threshold,isLevel}){
           stroke:'rgba(255,255,255,0.15)',strokeWidth:1}),
       h('line',{x1:0,y1:-R*0.85,x2:0,y2:R*0.85,
           stroke:'rgba(255,255,255,0.15)',strokeWidth:1}),
-      h('g',{style:{transition:'transform 0.1s ease-out'},
+      h('g',{style:{transition:'transform 0.05s ease-out'},
           transform:`translate(${bx},${by})`},
         h('circle',{cx:0,cy:0,r:20,fill:'rgba(0,0,0,0.35)'}),
         h('circle',{cx:0,cy:0,r:18,fill:bCol,fillOpacity:0.7,
@@ -418,7 +418,7 @@ function App(){
             h('h1',{style:{fontSize:'22px',fontWeight:300,color:'white',margin:0,lineHeight:1}},
               'Digital Level ',h('span',{style:{fontWeight:700,color:'#fbbf24'}},'RV')),
             h('p',{style:{fontSize:'10px',color:'#475569',margin:'2px 0 0'}},
-              'MPU-6050 \u00B7 ESP32 \u00B7 BLE \u00B7 v3.1')
+              'MPU-6050 \u00B7 ESP32 \u00B7 BLE \u00B7 v3.2')
           ),
           h('div',{style:{display:'flex',alignItems:'center',gap:'5px',padding:'4px 10px',
               borderRadius:'20px',border:`1px solid ${sc}40`,background:`${sc}12`,
@@ -559,7 +559,7 @@ function App(){
         h('div',{style:{textAlign:'center',fontSize:'11px',color:'#1e3a5f',paddingTop:'4px'}},
           h('p',{style:{margin:0}},'Arduino Nano ESP32 + MPU-6050 \u00B7 BLE Nordic UART'),
           h('p',{style:{margin:'3px 0 0'}},
-            `Level tolerance \u00B1${THRESHOLD.toFixed(1)}\u00B0 \u00B7 \u00A9 Digital Level 1 RV \u00B7 v3.1`)
+            `Level tolerance \u00B1${THRESHOLD.toFixed(1)}\u00B0 \u00B7 \u00A9 Digital Level 1 RV \u00B7 v3.2`)
         )
       )
     ),
